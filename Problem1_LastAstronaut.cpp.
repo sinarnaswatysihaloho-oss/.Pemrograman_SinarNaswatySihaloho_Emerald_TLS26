@@ -1,0 +1,44 @@
+//Emerald_SinarNaswatySihaloho_TLS26
+#include<iostream>
+using namespace std;
+int n,k,pos=0,jumlah;
+int astronaut[1000];
+
+void hapusAstronot(int posisi){
+    for(int i=posisi; i<jumlah-1; i++){
+        astronaut[i]=astronaut[i+1];
+    }
+    jumlah--;
+}
+
+int main(){
+    cout<<"Masukkan N: ";
+    cin>>n;
+    cout<<"Masukkan K: ";
+    cin>>k;
+    if(k<2){
+        k=2;
+    }
+    for(int i=1; i<=n; i++) {
+        astronaut[i-1]=i;
+    }
+    jumlah=n;
+    cout<<endl<<"Urutan eliminasi: ";
+    while(jumlah>1){
+        pos=(pos+k-1)%jumlah;
+        int eliminated=astronaut[pos];
+        cout<<eliminated<<" ";
+        hapusAstronot(pos);
+        if(eliminated%2==0){
+            k+=2;
+        }
+        else{
+            k--;
+            if(k<2){
+                k=2;
+            }
+        }
+    }
+    cout<<endl<<"Astronaut terakhir: "<<astronaut[0]<<endl;
+    return 0;
+}
